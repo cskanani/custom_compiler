@@ -1,0 +1,10 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+printf("Sample statment containing keywords GOTO DECISION BLOCK\n");
+END
+END

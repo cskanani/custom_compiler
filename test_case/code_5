@@ -1,0 +1,16 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+int i = 5;
+END
+DECISION d1
+IF i % 2
+THEN
+printf("i is odd\n");
+ELSE
+printf("i is even\n");
+END

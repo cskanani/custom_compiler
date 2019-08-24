@@ -1,0 +1,20 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+int i = 0;
+printf("Removing unwanted decision block d1\n");
+GOTO d2
+END
+DECISION d1
+IF i == 0
+THEN
+printf("This is decision d1\n");
+DECISION d2
+IF i == 0
+THEN
+printf("This is decision d2\n");
+END

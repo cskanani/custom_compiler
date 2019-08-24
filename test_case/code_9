@@ -1,0 +1,16 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+printf("This code will give error as b1 is tring to call block b2 but block b2 is not defined\n");
+GOTO b2
+END
+BLOCK b3
+START
+printf("The error will be identified in block b1 itself so GOTO b2 here does not matter\n");
+GOTO b2
+END
+END

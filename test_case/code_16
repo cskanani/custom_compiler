@@ -1,0 +1,15 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+/*A 
+Multi
+Line
+Comment
+*/
+printf("This is block b1\n");
+END
+END

@@ -1,0 +1,16 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+printf("This statment will be printed b1\n");
+GOTO b2
+printf("This statment will not be printed b1\n");
+END
+BLOCK b2
+START
+printf("This statment is from block b2\n");
+END
+END

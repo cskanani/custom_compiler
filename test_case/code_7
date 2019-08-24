@@ -1,0 +1,70 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+int i = 10;
+END
+DECISION d0
+IF i == 0
+THEN
+printf("i is 0\n");
+ELSE
+GOTO d1
+DECISION d1
+IF i == 1
+THEN
+printf("i is 1\n");
+ELSE
+GOTO d2
+DECISION d2
+IF i == 2
+THEN
+printf("i is 2\n");
+ELSE
+GOTO d3
+DECISION d3
+IF i == 3
+THEN
+printf("i is 3\n");
+ELSE
+GOTO d4
+DECISION d4
+IF i == 4
+THEN
+printf("i is 4\n");
+ELSE
+GOTO d5
+DECISION d5
+IF i == 5
+THEN
+printf("i is 5\n");
+ELSE
+GOTO d6
+DECISION d6
+IF i == 6
+THEN
+printf("i is 6\n");
+ELSE
+GOTO d7
+DECISION d7
+IF i == 7
+THEN
+printf("i is 7\n");
+ELSE
+GOTO d8
+DECISION d8
+IF i == 8
+THEN
+printf("i is 8\n");
+ELSE
+GOTO d9
+DECISION d9
+IF i == 9
+THEN
+printf("i is 9\n");
+ELSE
+printf("i si greater than 9\n");
+END

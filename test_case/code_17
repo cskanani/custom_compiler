@@ -1,0 +1,19 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+int/*A 
+Multi
+Line
+Comment
+*/i=1;
+printf("This is block b1\n");
+END
+DECISION d1
+IF i > 0 /*comment betwen declaration*/
+THEN
+printf("Multiline comment between declaration works\n");
+END

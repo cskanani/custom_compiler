@@ -1,0 +1,17 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+int i = 5;
+printf("This is simple loop using self calling in DECISION\n");
+END
+DECISION d1
+IF i >= 0
+THEN
+printf("i is : %d\n",i);
+i -= 1;
+GOTO d1
+END

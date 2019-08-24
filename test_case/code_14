@@ -1,0 +1,40 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+printf("This is block b1\n");
+GOTO b2
+END
+BLOCK b2
+START
+printf("This is block b2\n");
+GOTO b4
+END
+BLOCK b3
+START
+printf("block b3 will be removed as no block is calling it and also block b4 will not require a lablel\n");
+GOTO b4
+END
+BLOCK b4
+START
+printf("This is block b4\n");
+GOTO b5
+END
+BLOCK b5
+START
+printf("This is block b5\n");
+GOTO b6
+END
+BLOCK b6
+START
+printf("This is block b6\n");
+GOTO b7
+END
+BLOCK b7
+START
+printf("This is block b7\n");
+END
+END

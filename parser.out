@@ -1,0 +1,737 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    MESSAGE
+    UNCONDDEC
+    DQUOT
+    MCOMC
+    MCOMS
+    PROCESSBODY
+    SCOMS
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> sys sig pro prodef
+Rule 2     sys -> SYSTEM ID idr
+Rule 3     sig -> SIGNAL ID idr
+Rule 4     sig -> <empty>
+Rule 5     pro -> PROCESS ID idr
+Rule 6     pro -> <empty>
+Rule 7     idr -> COMMA ID idr
+Rule 8     idr -> SEMICOLON
+Rule 9     prodef -> prodef PROCESSDEF ID START prodefd END
+Rule 10    prodef -> <empty>
+Rule 11    prodefd -> prodefd BLOCK prcb
+Rule 12    prodefd -> prodefd DECISION ifc thnc elsc
+Rule 13    prodefd -> <empty>
+Rule 14    prcb -> ID START txt END
+Rule 15    ifc -> ID IF txt
+Rule 16    thnc -> THEN txt
+Rule 17    elsc -> ELSE txt
+Rule 18    elsc -> <empty>
+Rule 19    txt -> txt txtr
+Rule 20    txt -> <empty>
+Rule 21    txtr -> ID
+Rule 22    txtr -> COMMA
+Rule 23    txtr -> SEMICOLON
+Rule 24    txtr -> GOTO ID discard
+Rule 25    discard -> discard discardr
+Rule 26    discard -> <empty>
+Rule 27    discardr -> ID
+Rule 28    discardr -> COMMA
+Rule 29    discardr -> SEMICOLON
+Rule 30    discardr -> GOTO ID
+
+Terminals, with rules where they appear
+
+BLOCK                : 11
+COMMA                : 7 22 28
+DECISION             : 12
+DQUOT                : 
+ELSE                 : 17
+END                  : 9 14
+GOTO                 : 24 30
+ID                   : 2 3 5 7 9 14 15 21 24 27 30
+IF                   : 15
+MCOMC                : 
+MCOMS                : 
+MESSAGE              : 
+PROCESS              : 5
+PROCESSBODY          : 
+PROCESSDEF           : 9
+SCOMS                : 
+SEMICOLON            : 8 23 29
+SIGNAL               : 3
+START                : 9 14
+SYSTEM               : 2
+THEN                 : 16
+UNCONDDEC            : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+discard              : 24 25
+discardr             : 25
+elsc                 : 12
+idr                  : 2 3 5 7
+ifc                  : 12
+prcb                 : 11
+pro                  : 1
+prodef               : 1 9
+prodefd              : 9 11 12
+sig                  : 1
+start                : 0
+sys                  : 1
+thnc                 : 12
+txt                  : 14 15 16 17 19
+txtr                 : 19
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . sys sig pro prodef
+    (2) sys -> . SYSTEM ID idr
+
+    SYSTEM          shift and go to state 1
+
+    start                          shift and go to state 2
+    sys                            shift and go to state 3
+
+state 1
+
+    (2) sys -> SYSTEM . ID idr
+
+    ID              shift and go to state 4
+
+
+state 2
+
+    (0) S' -> start .
+
+
+
+state 3
+
+    (1) start -> sys . sig pro prodef
+    (3) sig -> . SIGNAL ID idr
+    (4) sig -> .
+
+    SIGNAL          shift and go to state 6
+    PROCESS         reduce using rule 4 (sig -> .)
+    PROCESSDEF      reduce using rule 4 (sig -> .)
+    $end            reduce using rule 4 (sig -> .)
+
+    sig                            shift and go to state 5
+
+state 4
+
+    (2) sys -> SYSTEM ID . idr
+    (7) idr -> . COMMA ID idr
+    (8) idr -> . SEMICOLON
+
+    COMMA           shift and go to state 8
+    SEMICOLON       shift and go to state 7
+
+    idr                            shift and go to state 9
+
+state 5
+
+    (1) start -> sys sig . pro prodef
+    (5) pro -> . PROCESS ID idr
+    (6) pro -> .
+
+    PROCESS         shift and go to state 10
+    PROCESSDEF      reduce using rule 6 (pro -> .)
+    $end            reduce using rule 6 (pro -> .)
+
+    pro                            shift and go to state 11
+
+state 6
+
+    (3) sig -> SIGNAL . ID idr
+
+    ID              shift and go to state 12
+
+
+state 7
+
+    (8) idr -> SEMICOLON .
+
+    PROCESS         reduce using rule 8 (idr -> SEMICOLON .)
+    PROCESSDEF      reduce using rule 8 (idr -> SEMICOLON .)
+    $end            reduce using rule 8 (idr -> SEMICOLON .)
+    SIGNAL          reduce using rule 8 (idr -> SEMICOLON .)
+
+
+state 8
+
+    (7) idr -> COMMA . ID idr
+
+    ID              shift and go to state 13
+
+
+state 9
+
+    (2) sys -> SYSTEM ID idr .
+
+    SIGNAL          reduce using rule 2 (sys -> SYSTEM ID idr .)
+    PROCESS         reduce using rule 2 (sys -> SYSTEM ID idr .)
+    PROCESSDEF      reduce using rule 2 (sys -> SYSTEM ID idr .)
+    $end            reduce using rule 2 (sys -> SYSTEM ID idr .)
+
+
+state 10
+
+    (5) pro -> PROCESS . ID idr
+
+    ID              shift and go to state 14
+
+
+state 11
+
+    (1) start -> sys sig pro . prodef
+    (9) prodef -> . prodef PROCESSDEF ID START prodefd END
+    (10) prodef -> .
+
+    PROCESSDEF      reduce using rule 10 (prodef -> .)
+    $end            reduce using rule 10 (prodef -> .)
+
+    prodef                         shift and go to state 15
+
+state 12
+
+    (3) sig -> SIGNAL ID . idr
+    (7) idr -> . COMMA ID idr
+    (8) idr -> . SEMICOLON
+
+    COMMA           shift and go to state 8
+    SEMICOLON       shift and go to state 7
+
+    idr                            shift and go to state 16
+
+state 13
+
+    (7) idr -> COMMA ID . idr
+    (7) idr -> . COMMA ID idr
+    (8) idr -> . SEMICOLON
+
+    COMMA           shift and go to state 8
+    SEMICOLON       shift and go to state 7
+
+    idr                            shift and go to state 17
+
+state 14
+
+    (5) pro -> PROCESS ID . idr
+    (7) idr -> . COMMA ID idr
+    (8) idr -> . SEMICOLON
+
+    COMMA           shift and go to state 8
+    SEMICOLON       shift and go to state 7
+
+    idr                            shift and go to state 18
+
+state 15
+
+    (1) start -> sys sig pro prodef .
+    (9) prodef -> prodef . PROCESSDEF ID START prodefd END
+
+    $end            reduce using rule 1 (start -> sys sig pro prodef .)
+    PROCESSDEF      shift and go to state 19
+
+
+state 16
+
+    (3) sig -> SIGNAL ID idr .
+
+    PROCESS         reduce using rule 3 (sig -> SIGNAL ID idr .)
+    PROCESSDEF      reduce using rule 3 (sig -> SIGNAL ID idr .)
+    $end            reduce using rule 3 (sig -> SIGNAL ID idr .)
+
+
+state 17
+
+    (7) idr -> COMMA ID idr .
+
+    PROCESS         reduce using rule 7 (idr -> COMMA ID idr .)
+    PROCESSDEF      reduce using rule 7 (idr -> COMMA ID idr .)
+    $end            reduce using rule 7 (idr -> COMMA ID idr .)
+    SIGNAL          reduce using rule 7 (idr -> COMMA ID idr .)
+
+
+state 18
+
+    (5) pro -> PROCESS ID idr .
+
+    PROCESSDEF      reduce using rule 5 (pro -> PROCESS ID idr .)
+    $end            reduce using rule 5 (pro -> PROCESS ID idr .)
+
+
+state 19
+
+    (9) prodef -> prodef PROCESSDEF . ID START prodefd END
+
+    ID              shift and go to state 20
+
+
+state 20
+
+    (9) prodef -> prodef PROCESSDEF ID . START prodefd END
+
+    START           shift and go to state 21
+
+
+state 21
+
+    (9) prodef -> prodef PROCESSDEF ID START . prodefd END
+    (11) prodefd -> . prodefd BLOCK prcb
+    (12) prodefd -> . prodefd DECISION ifc thnc elsc
+    (13) prodefd -> .
+
+    END             reduce using rule 13 (prodefd -> .)
+    BLOCK           reduce using rule 13 (prodefd -> .)
+    DECISION        reduce using rule 13 (prodefd -> .)
+
+    prodefd                        shift and go to state 22
+
+state 22
+
+    (9) prodef -> prodef PROCESSDEF ID START prodefd . END
+    (11) prodefd -> prodefd . BLOCK prcb
+    (12) prodefd -> prodefd . DECISION ifc thnc elsc
+
+    END             shift and go to state 24
+    BLOCK           shift and go to state 25
+    DECISION        shift and go to state 23
+
+
+state 23
+
+    (12) prodefd -> prodefd DECISION . ifc thnc elsc
+    (15) ifc -> . ID IF txt
+
+    ID              shift and go to state 27
+
+    ifc                            shift and go to state 26
+
+state 24
+
+    (9) prodef -> prodef PROCESSDEF ID START prodefd END .
+
+    PROCESSDEF      reduce using rule 9 (prodef -> prodef PROCESSDEF ID START prodefd END .)
+    $end            reduce using rule 9 (prodef -> prodef PROCESSDEF ID START prodefd END .)
+
+
+state 25
+
+    (11) prodefd -> prodefd BLOCK . prcb
+    (14) prcb -> . ID START txt END
+
+    ID              shift and go to state 29
+
+    prcb                           shift and go to state 28
+
+state 26
+
+    (12) prodefd -> prodefd DECISION ifc . thnc elsc
+    (16) thnc -> . THEN txt
+
+    THEN            shift and go to state 31
+
+    thnc                           shift and go to state 30
+
+state 27
+
+    (15) ifc -> ID . IF txt
+
+    IF              shift and go to state 32
+
+
+state 28
+
+    (11) prodefd -> prodefd BLOCK prcb .
+
+    END             reduce using rule 11 (prodefd -> prodefd BLOCK prcb .)
+    BLOCK           reduce using rule 11 (prodefd -> prodefd BLOCK prcb .)
+    DECISION        reduce using rule 11 (prodefd -> prodefd BLOCK prcb .)
+
+
+state 29
+
+    (14) prcb -> ID . START txt END
+
+    START           shift and go to state 33
+
+
+state 30
+
+    (12) prodefd -> prodefd DECISION ifc thnc . elsc
+    (17) elsc -> . ELSE txt
+    (18) elsc -> .
+
+    ELSE            shift and go to state 35
+    END             reduce using rule 18 (elsc -> .)
+    BLOCK           reduce using rule 18 (elsc -> .)
+    DECISION        reduce using rule 18 (elsc -> .)
+
+    elsc                           shift and go to state 34
+
+state 31
+
+    (16) thnc -> THEN . txt
+    (19) txt -> . txt txtr
+    (20) txt -> .
+
+    ID              reduce using rule 20 (txt -> .)
+    COMMA           reduce using rule 20 (txt -> .)
+    SEMICOLON       reduce using rule 20 (txt -> .)
+    GOTO            reduce using rule 20 (txt -> .)
+    ELSE            reduce using rule 20 (txt -> .)
+    END             reduce using rule 20 (txt -> .)
+    BLOCK           reduce using rule 20 (txt -> .)
+    DECISION        reduce using rule 20 (txt -> .)
+
+    txt                            shift and go to state 36
+
+state 32
+
+    (15) ifc -> ID IF . txt
+    (19) txt -> . txt txtr
+    (20) txt -> .
+
+    ID              reduce using rule 20 (txt -> .)
+    COMMA           reduce using rule 20 (txt -> .)
+    SEMICOLON       reduce using rule 20 (txt -> .)
+    GOTO            reduce using rule 20 (txt -> .)
+    THEN            reduce using rule 20 (txt -> .)
+
+    txt                            shift and go to state 37
+
+state 33
+
+    (14) prcb -> ID START . txt END
+    (19) txt -> . txt txtr
+    (20) txt -> .
+
+    END             reduce using rule 20 (txt -> .)
+    ID              reduce using rule 20 (txt -> .)
+    COMMA           reduce using rule 20 (txt -> .)
+    SEMICOLON       reduce using rule 20 (txt -> .)
+    GOTO            reduce using rule 20 (txt -> .)
+
+    txt                            shift and go to state 38
+
+state 34
+
+    (12) prodefd -> prodefd DECISION ifc thnc elsc .
+
+    END             reduce using rule 12 (prodefd -> prodefd DECISION ifc thnc elsc .)
+    BLOCK           reduce using rule 12 (prodefd -> prodefd DECISION ifc thnc elsc .)
+    DECISION        reduce using rule 12 (prodefd -> prodefd DECISION ifc thnc elsc .)
+
+
+state 35
+
+    (17) elsc -> ELSE . txt
+    (19) txt -> . txt txtr
+    (20) txt -> .
+
+    ID              reduce using rule 20 (txt -> .)
+    COMMA           reduce using rule 20 (txt -> .)
+    SEMICOLON       reduce using rule 20 (txt -> .)
+    GOTO            reduce using rule 20 (txt -> .)
+    END             reduce using rule 20 (txt -> .)
+    BLOCK           reduce using rule 20 (txt -> .)
+    DECISION        reduce using rule 20 (txt -> .)
+
+    txt                            shift and go to state 39
+
+state 36
+
+    (16) thnc -> THEN txt .
+    (19) txt -> txt . txtr
+    (21) txtr -> . ID
+    (22) txtr -> . COMMA
+    (23) txtr -> . SEMICOLON
+    (24) txtr -> . GOTO ID discard
+
+    ELSE            reduce using rule 16 (thnc -> THEN txt .)
+    END             reduce using rule 16 (thnc -> THEN txt .)
+    BLOCK           reduce using rule 16 (thnc -> THEN txt .)
+    DECISION        reduce using rule 16 (thnc -> THEN txt .)
+    ID              shift and go to state 44
+    COMMA           shift and go to state 42
+    SEMICOLON       shift and go to state 41
+    GOTO            shift and go to state 43
+
+    txtr                           shift and go to state 40
+
+state 37
+
+    (15) ifc -> ID IF txt .
+    (19) txt -> txt . txtr
+    (21) txtr -> . ID
+    (22) txtr -> . COMMA
+    (23) txtr -> . SEMICOLON
+    (24) txtr -> . GOTO ID discard
+
+    THEN            reduce using rule 15 (ifc -> ID IF txt .)
+    ID              shift and go to state 44
+    COMMA           shift and go to state 42
+    SEMICOLON       shift and go to state 41
+    GOTO            shift and go to state 43
+
+    txtr                           shift and go to state 40
+
+state 38
+
+    (14) prcb -> ID START txt . END
+    (19) txt -> txt . txtr
+    (21) txtr -> . ID
+    (22) txtr -> . COMMA
+    (23) txtr -> . SEMICOLON
+    (24) txtr -> . GOTO ID discard
+
+    END             shift and go to state 45
+    ID              shift and go to state 44
+    COMMA           shift and go to state 42
+    SEMICOLON       shift and go to state 41
+    GOTO            shift and go to state 43
+
+    txtr                           shift and go to state 40
+
+state 39
+
+    (17) elsc -> ELSE txt .
+    (19) txt -> txt . txtr
+    (21) txtr -> . ID
+    (22) txtr -> . COMMA
+    (23) txtr -> . SEMICOLON
+    (24) txtr -> . GOTO ID discard
+
+    END             reduce using rule 17 (elsc -> ELSE txt .)
+    BLOCK           reduce using rule 17 (elsc -> ELSE txt .)
+    DECISION        reduce using rule 17 (elsc -> ELSE txt .)
+    ID              shift and go to state 44
+    COMMA           shift and go to state 42
+    SEMICOLON       shift and go to state 41
+    GOTO            shift and go to state 43
+
+    txtr                           shift and go to state 40
+
+state 40
+
+    (19) txt -> txt txtr .
+
+    END             reduce using rule 19 (txt -> txt txtr .)
+    ID              reduce using rule 19 (txt -> txt txtr .)
+    COMMA           reduce using rule 19 (txt -> txt txtr .)
+    SEMICOLON       reduce using rule 19 (txt -> txt txtr .)
+    GOTO            reduce using rule 19 (txt -> txt txtr .)
+    BLOCK           reduce using rule 19 (txt -> txt txtr .)
+    DECISION        reduce using rule 19 (txt -> txt txtr .)
+    THEN            reduce using rule 19 (txt -> txt txtr .)
+    ELSE            reduce using rule 19 (txt -> txt txtr .)
+
+
+state 41
+
+    (23) txtr -> SEMICOLON .
+
+    END             reduce using rule 23 (txtr -> SEMICOLON .)
+    ID              reduce using rule 23 (txtr -> SEMICOLON .)
+    COMMA           reduce using rule 23 (txtr -> SEMICOLON .)
+    SEMICOLON       reduce using rule 23 (txtr -> SEMICOLON .)
+    GOTO            reduce using rule 23 (txtr -> SEMICOLON .)
+    ELSE            reduce using rule 23 (txtr -> SEMICOLON .)
+    BLOCK           reduce using rule 23 (txtr -> SEMICOLON .)
+    DECISION        reduce using rule 23 (txtr -> SEMICOLON .)
+    THEN            reduce using rule 23 (txtr -> SEMICOLON .)
+
+
+state 42
+
+    (22) txtr -> COMMA .
+
+    END             reduce using rule 22 (txtr -> COMMA .)
+    ID              reduce using rule 22 (txtr -> COMMA .)
+    COMMA           reduce using rule 22 (txtr -> COMMA .)
+    SEMICOLON       reduce using rule 22 (txtr -> COMMA .)
+    GOTO            reduce using rule 22 (txtr -> COMMA .)
+    ELSE            reduce using rule 22 (txtr -> COMMA .)
+    BLOCK           reduce using rule 22 (txtr -> COMMA .)
+    DECISION        reduce using rule 22 (txtr -> COMMA .)
+    THEN            reduce using rule 22 (txtr -> COMMA .)
+
+
+state 43
+
+    (24) txtr -> GOTO . ID discard
+
+    ID              shift and go to state 46
+
+
+state 44
+
+    (21) txtr -> ID .
+
+    END             reduce using rule 21 (txtr -> ID .)
+    ID              reduce using rule 21 (txtr -> ID .)
+    COMMA           reduce using rule 21 (txtr -> ID .)
+    SEMICOLON       reduce using rule 21 (txtr -> ID .)
+    GOTO            reduce using rule 21 (txtr -> ID .)
+    ELSE            reduce using rule 21 (txtr -> ID .)
+    BLOCK           reduce using rule 21 (txtr -> ID .)
+    DECISION        reduce using rule 21 (txtr -> ID .)
+    THEN            reduce using rule 21 (txtr -> ID .)
+
+
+state 45
+
+    (14) prcb -> ID START txt END .
+
+    END             reduce using rule 14 (prcb -> ID START txt END .)
+    BLOCK           reduce using rule 14 (prcb -> ID START txt END .)
+    DECISION        reduce using rule 14 (prcb -> ID START txt END .)
+
+
+state 46
+
+    (24) txtr -> GOTO ID . discard
+    (25) discard -> . discard discardr
+    (26) discard -> .
+
+    ID              reduce using rule 26 (discard -> .)
+    COMMA           reduce using rule 26 (discard -> .)
+    SEMICOLON       reduce using rule 26 (discard -> .)
+    GOTO            reduce using rule 26 (discard -> .)
+    ELSE            reduce using rule 26 (discard -> .)
+    END             reduce using rule 26 (discard -> .)
+    BLOCK           reduce using rule 26 (discard -> .)
+    DECISION        reduce using rule 26 (discard -> .)
+    THEN            reduce using rule 26 (discard -> .)
+
+    discard                        shift and go to state 47
+
+state 47
+
+    (24) txtr -> GOTO ID discard .
+    (25) discard -> discard . discardr
+    (27) discardr -> . ID
+    (28) discardr -> . COMMA
+    (29) discardr -> . SEMICOLON
+    (30) discardr -> . GOTO ID
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! shift/reduce conflict for SEMICOLON resolved as shift
+  ! shift/reduce conflict for GOTO resolved as shift
+    END             reduce using rule 24 (txtr -> GOTO ID discard .)
+    ELSE            reduce using rule 24 (txtr -> GOTO ID discard .)
+    BLOCK           reduce using rule 24 (txtr -> GOTO ID discard .)
+    DECISION        reduce using rule 24 (txtr -> GOTO ID discard .)
+    THEN            reduce using rule 24 (txtr -> GOTO ID discard .)
+    ID              shift and go to state 51
+    COMMA           shift and go to state 49
+    SEMICOLON       shift and go to state 48
+    GOTO            shift and go to state 50
+
+  ! ID              [ reduce using rule 24 (txtr -> GOTO ID discard .) ]
+  ! COMMA           [ reduce using rule 24 (txtr -> GOTO ID discard .) ]
+  ! SEMICOLON       [ reduce using rule 24 (txtr -> GOTO ID discard .) ]
+  ! GOTO            [ reduce using rule 24 (txtr -> GOTO ID discard .) ]
+
+    discardr                       shift and go to state 52
+
+state 48
+
+    (29) discardr -> SEMICOLON .
+
+    ID              reduce using rule 29 (discardr -> SEMICOLON .)
+    COMMA           reduce using rule 29 (discardr -> SEMICOLON .)
+    SEMICOLON       reduce using rule 29 (discardr -> SEMICOLON .)
+    GOTO            reduce using rule 29 (discardr -> SEMICOLON .)
+    ELSE            reduce using rule 29 (discardr -> SEMICOLON .)
+    END             reduce using rule 29 (discardr -> SEMICOLON .)
+    BLOCK           reduce using rule 29 (discardr -> SEMICOLON .)
+    DECISION        reduce using rule 29 (discardr -> SEMICOLON .)
+    THEN            reduce using rule 29 (discardr -> SEMICOLON .)
+
+
+state 49
+
+    (28) discardr -> COMMA .
+
+    ID              reduce using rule 28 (discardr -> COMMA .)
+    COMMA           reduce using rule 28 (discardr -> COMMA .)
+    SEMICOLON       reduce using rule 28 (discardr -> COMMA .)
+    GOTO            reduce using rule 28 (discardr -> COMMA .)
+    ELSE            reduce using rule 28 (discardr -> COMMA .)
+    END             reduce using rule 28 (discardr -> COMMA .)
+    BLOCK           reduce using rule 28 (discardr -> COMMA .)
+    DECISION        reduce using rule 28 (discardr -> COMMA .)
+    THEN            reduce using rule 28 (discardr -> COMMA .)
+
+
+state 50
+
+    (30) discardr -> GOTO . ID
+
+    ID              shift and go to state 53
+
+
+state 51
+
+    (27) discardr -> ID .
+
+    ID              reduce using rule 27 (discardr -> ID .)
+    COMMA           reduce using rule 27 (discardr -> ID .)
+    SEMICOLON       reduce using rule 27 (discardr -> ID .)
+    GOTO            reduce using rule 27 (discardr -> ID .)
+    ELSE            reduce using rule 27 (discardr -> ID .)
+    END             reduce using rule 27 (discardr -> ID .)
+    BLOCK           reduce using rule 27 (discardr -> ID .)
+    DECISION        reduce using rule 27 (discardr -> ID .)
+    THEN            reduce using rule 27 (discardr -> ID .)
+
+
+state 52
+
+    (25) discard -> discard discardr .
+
+    ID              reduce using rule 25 (discard -> discard discardr .)
+    COMMA           reduce using rule 25 (discard -> discard discardr .)
+    SEMICOLON       reduce using rule 25 (discard -> discard discardr .)
+    GOTO            reduce using rule 25 (discard -> discard discardr .)
+    ELSE            reduce using rule 25 (discard -> discard discardr .)
+    END             reduce using rule 25 (discard -> discard discardr .)
+    BLOCK           reduce using rule 25 (discard -> discard discardr .)
+    DECISION        reduce using rule 25 (discard -> discard discardr .)
+    THEN            reduce using rule 25 (discard -> discard discardr .)
+
+
+state 53
+
+    (30) discardr -> GOTO ID .
+
+    ID              reduce using rule 30 (discardr -> GOTO ID .)
+    COMMA           reduce using rule 30 (discardr -> GOTO ID .)
+    SEMICOLON       reduce using rule 30 (discardr -> GOTO ID .)
+    GOTO            reduce using rule 30 (discardr -> GOTO ID .)
+    ELSE            reduce using rule 30 (discardr -> GOTO ID .)
+    END             reduce using rule 30 (discardr -> GOTO ID .)
+    BLOCK           reduce using rule 30 (discardr -> GOTO ID .)
+    DECISION        reduce using rule 30 (discardr -> GOTO ID .)
+    THEN            reduce using rule 30 (discardr -> GOTO ID .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ID in state 47 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 47 resolved as shift
+WARNING: shift/reduce conflict for SEMICOLON in state 47 resolved as shift
+WARNING: shift/reduce conflict for GOTO in state 47 resolved as shift

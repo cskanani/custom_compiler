@@ -1,0 +1,12 @@
+SYSTEM s1,s2,s3;
+SIGNAL si1,si2;
+PROCESS p1;
+PROCESSDEF p1
+START
+BLOCK b1
+START
+/*Comment containiing keywords like GOTO BLOCK etc..*/
+printf("This code contains comments with keywords\n");
+//Comment containiing keywords like GOTO BLOCK etc..
+END
+END
