@@ -1,5 +1,5 @@
 # custom_compiler
-Developed a compiler for coverting code of a custom language into c language.
+Developed a compiler for coverting code of a custom language into c language. See **Question.pdf** file for understanding the requirements of compiler.
 
 ## Requirements
 python3
