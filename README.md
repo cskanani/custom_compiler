@@ -2,7 +2,7 @@
 Developed a compiler for coverting code of a custom language into c language. See **Question.pdf** file for understanding the requirements of compiler.
 
 ## Requirements
-python3
+python3  
 ply 3.11
 
 ## Testing the compiler
